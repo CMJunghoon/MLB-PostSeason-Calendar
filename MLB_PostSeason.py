@@ -164,7 +164,7 @@ class MLBPostseasonUpdater:
                 
                 # 형식 1: ISO format with Z (2025-09-30T17:08:00Z)
                 if 'Z' in game_datetime:
-                    utc_dt = datetime.strptime(utc_str, "%Y-%m-%dT%H:%M:%SZ")
+                    utc_dt = datetime.strptime(game_datetime, "%Y-%m-%dT%H:%M:%SZ")
                     utc_dt = utc_dt.replace(tzinfo=pytz.UTC)
 
                     # 처음 값이 33분인지 확인
