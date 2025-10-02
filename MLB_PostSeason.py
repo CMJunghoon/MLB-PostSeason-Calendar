@@ -164,7 +164,24 @@ class MLBPostseasonUpdater:
                 
                 # 형식 1: ISO format with Z (2025-09-30T17:08:00Z)
                 if 'Z' in game_datetime:
-                    dt = datetime.fromisoformat(game_datetime.replace('Z', '+00:00'))
+                    utc_dt = datetime.strptime(utc_str, "%Y-%m-%dT%H:%M:%SZ")
+                    utc_dt = utc_dt.replace(tzinfo=pytz.UTC)
+
+                    # 처음 값이 33분인지 확인
+                    if utc_dt.minute == 33:
+                        # 동부 시간대 변환
+                        # 2. ET timezone
+                        et_tz = pytz.timezone("US/Eastern")
+
+                        # 3. ET 날짜로 변환 (시간 무시)
+                        et_date = utc_dt.astimezone(et_tz).date()
+
+                        # 4. 날짜 + 15:08 (ET)으로 새 datetime 생성
+                        dt = et_tz.localize(datetime.combine(et_date, time(15, 8)))
+                        print(f"\n>>> TBD team detected, using default time 3:08 PM ET")
+                        print(f"    Date: {game_datetime} -> {dt}")
+                    else:
+                        dt = datetime.fromisoformat(game_datetime.replace('Z', '+00:00'))
                     print(f"    Parsed as UTC: {dt}")
                 # 형식 2: ISO format with timezone offset (2025-09-30T13:08:00-04:00)
                 elif '+' in game_datetime or (game_datetime.count('-') > 2):
