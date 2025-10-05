@@ -562,4 +562,10 @@ Examples:
 
 
 if __name__ == "__main__":
+    from datetime import datetime
+    today = datetime.now()
+    if not ((today.month == 9 and today.day >= 28) or (today.month == 10) or (today.month == 11 and today.day <= 3)):
+        print("Not postseason period. Skipping deploy.")
+        exit(0)
+
     main()

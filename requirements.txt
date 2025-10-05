@@ -1,0 +1,2 @@
+mlb_statsapi==1.9.0
+pytz==2025.2
