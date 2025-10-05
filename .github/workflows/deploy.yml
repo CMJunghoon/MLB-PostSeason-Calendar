@@ -49,11 +49,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # 6️⃣ Firebase CLI 설치
-      - name: Install Firebase CLI
-        run: |
-          npm install -g firebase-tools
+      # - name: Install Firebase CLI
+      #   run: |
+      #     npm install -g firebase-tools
 
-      # 7️⃣ Firebase Hosting 배포
-      - name: Deploy to Firebase Hosting
-        run: |
-          firebase deploy --only hosting --project "${{ secrets.FIREBASE_PROJECT_ID }}" --token "${{ secrets.FIREBASE_TOKEN }}"
+      # # 7️⃣ Firebase Hosting 배포
+      # - name: Deploy to Firebase Hosting
+      #   run: |
+      #     firebase deploy --only hosting --project "${{ secrets.FIREBASE_PROJECT_ID }}" --token "${{ secrets.FIREBASE_TOKEN }}"
