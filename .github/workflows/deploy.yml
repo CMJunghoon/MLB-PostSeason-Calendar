@@ -1,35 +1,59 @@
-name: Auto Deploy MLB Calendar
+name: Generate and Deploy MLB Postseason ICS
 
 on:
   schedule:
-    # 매일 오전 9시, 오후 2시 (UTC 기준으로 0시, 5시)
+    # 매일 오전 9시, 오후 2시 (한국시간 기준 → UTC 0시, 5시)
     - cron: '0 0,5 * * *'
-  workflow_dispatch: # 수동 실행 버튼도 추가
+  workflow_dispatch:  # 수동 실행도 가능
+
+permissions:
+  contents: write  # GitHub 커밋용 권한
 
 jobs:
-  build-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ 저장소 체크아웃
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
+      # 2️⃣ Python 설정
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
+      # 3️⃣ 의존성 설치
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
-      - name: Run MLB_PostSeason.py
+      # 4️⃣ .ics 생성
+      - name: Run MLB Postseason script
         run: |
+          mkdir -p public
           python MLB_PostSeason.py
 
+      # 5️⃣ GitHub 저장소에 커밋 & 푸시
+      - name: Commit and push .ics update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/*.ics
+          git commit -m "🔁 Auto-update postseason calendar ($(date '+%Y-%m-%d %H:%M:%S'))" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 6️⃣ Firebase CLI 설치
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: |
+          npm install -g firebase-tools
 
+      # 7️⃣ Firebase Hosting 배포
       - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"
-
+        run: |
+          firebase deploy --only hosting --project "${{ secrets.FIREBASE_PROJECT_ID }}" --token "${{ secrets.FIREBASE_TOKEN }}"
