@@ -278,11 +278,6 @@ class MLBPostseasonUpdater:
             away_score = game.get('away_score', 0)
             home_score = game.get('home_score', 0)
             summary = f"✓ {series_name}: {away_team} {away_score} @ {home_team} {home_score}"
-        elif status == 'Postponed':
-            summary = f"⏸ {series_name}: {away_team} @ {home_team} (연기)"
-        elif status in ['In Progress', 'Live']:
-            inning = game.get('inning', '')
-            summary = f"🔴 {series_name}: {away_team} @ {home_team} ({inning})"
         else:
             summary = f"{series_name}: {away_team} @ {home_team}"
         
