@@ -103,6 +103,7 @@ class MLBPostseasonUpdater:
             print(f"Game: {game_data.get('teams', {}).get('away', {}).get('team', {}).get('name', 'TBD')} @ {game_data.get('teams', {}).get('home', {}).get('team', {}).get('name', 'TBD')}")
             print(f"gameDate: {game_data.get('gameDate')}")
             print(f"officialDate: {game_data.get('officialDate')}")
+            print(f"Game Number: {game_data.get('seriesGameNumber', 1)}")
             print("=" * 50)
             
             game_info = {
