@@ -49,6 +49,7 @@ class MLBPostseasonUpdater:
                         print(f"game_datetime: {game.get('game_datetime')}")
                         print(f"game_date: {game.get('game_date')}")
                         print(f"game_type: {game_type}")
+                        print(f"Game Number: {game.get('seriesGameNumber')}")
                         print("=" * 50)
                         
                         games.append(game)
