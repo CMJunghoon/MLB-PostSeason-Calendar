@@ -1,9 +1,6 @@
 name: Generate and Deploy MLB Postseason ICS
 
 on:
-  schedule:
-    # 매일 오전 9시, 오후 2시 (한국시간 기준 → UTC 0시, 5시)
-    - cron: '0 0,5 * * *'
   workflow_dispatch:  # 수동 실행도 가능
 
 permissions:
