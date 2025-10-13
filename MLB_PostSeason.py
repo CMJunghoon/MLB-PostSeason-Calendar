@@ -277,9 +277,9 @@ class MLBPostseasonUpdater:
         if status in ['Final', 'Game Over']:
             away_score = game.get('away_score', 0)
             home_score = game.get('home_score', 0)
-            summary = f"✓ {series_name}: {away_team} {away_score} @ {home_team} {home_score}"
+            summary = f"✓ {series_name} {game_num}: {away_team} {away_score} @ {home_team} {home_score}"
         else:
-            summary = f"{series_name}: {away_team} @ {home_team}"
+            summary = f"{series_name} {game_num}: {away_team} @ {home_team}"
         
         return summary
 
