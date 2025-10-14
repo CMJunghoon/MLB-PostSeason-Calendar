@@ -43,14 +43,6 @@ class MLBPostseasonUpdater:
                     
                     # 포스트시즌 게임 타입 확인
                     if game_type in self.postseason_game_types:
-                        # 시간 정보 로깅
-                        print(f"\n=== Game Time Debug ===")
-                        print(f"Game: {game.get('away_name')} @ {game.get('home_name')}")
-                        print(f"game_datetime: {game.get('game_datetime')}")
-                        print(f"game_date: {game.get('game_date')}")
-                        print(f"game_type: {game_type}")
-                        print("=" * 50)
-                        
                         games.append(game)
                         
             except Exception as e:
@@ -277,9 +269,9 @@ class MLBPostseasonUpdater:
         if status in ['Final', 'Game Over']:
             away_score = game.get('away_score', 0)
             home_score = game.get('home_score', 0)
-            summary = f"✓ {series_name} {game_num}: {away_team} {away_score} @ {home_team} {home_score}"
+            summary = f"{series_name}: {away_team} {away_score} @ {home_team} {home_score}"
         else:
-            summary = f"{series_name} {game_num}: {away_team} @ {home_team}"
+            summary = f"{series_name}: {away_team} @ {home_team}"
         
         return summary
 
