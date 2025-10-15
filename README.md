@@ -1,8 +1,8 @@
 # MLB-PostSeason-Calendar
 
-```
+``` markdown
 ------------------------------------------------------------------------------- 
-Tigers Batters                           AB   R   H  RBI BB   K  LOB AVG   OPS  
+Tigers Batters                           AB   R   H  RBI  BB  K  LOB  AVG  OPS  
 ------------------------------------------------------------------------------- 
 1 Meadows, P  CF                          5   0   1   0   0   1   3  .125 .347  
 2 Torres  2B                              4   0   1   0   0   1   1  .125 .347  
