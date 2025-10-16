@@ -21,7 +21,7 @@ class MLBPostseasonICSMaker:
 
         # 쿼리 파라미터
         params = {
-            "startDate": "10/01/2025",
+            "startDate": "09/30/2025",
             "endDate": "11/02/2025",
             "sportId": 1,
             "hydrate": "team(league),decisions,probablePitcher,linescore,stats(group=[pitching],type=season,sportId=1),currentTeam",
