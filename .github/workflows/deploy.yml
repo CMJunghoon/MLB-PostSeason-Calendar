@@ -32,7 +32,7 @@ jobs:
       - name: Run MLB Postseason script
         run: |
           mkdir -p public
-          python MLB_PostSeason.py
+          python MLB_API.py
 
       # 5️⃣ GitHub 저장소에 커밋 & 푸시
       - name: Commit and push .ics update
