@@ -80,12 +80,12 @@ class MLBPostseasonICSMaker:
         wins_needed = (gamesInSeries // 2) + 1  # 3전2승, 5전3승, 7전4승
         if away_wins > home_wins:
             if away_wins >= wins_needed:
-                series_record = f"({away_wins}-{home_wins}) {away_name_shortName} Wins"
+                series_record = f"🏆️ ({away_wins}-{home_wins}) {away_name_shortName} Wins"
             else:
                 series_record = f"({away_wins}-{home_wins}) {away_name_shortName} Leads"
         elif home_wins > away_wins:
             if home_wins >= wins_needed:
-                series_record = f"({away_wins}-{home_wins}) {home_name_shortName} Wins"
+                series_record = f"🏆️ ({away_wins}-{home_wins}) {home_name_shortName} Wins"
             else:
                 series_record = f"({away_wins}-{home_wins}) {home_name_shortName} Leads"
         else:
