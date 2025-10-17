@@ -89,7 +89,7 @@ class MLBPostseasonICSMaker:
             else:
                 series_record = f"({away_wins}-{home_wins}) {home_name_shortName} Leads"
         else:
-            series_record = f"({away_wins}-{home_wins})  Tied {away_name}-{home_name}"
+            series_record = f"({away_wins}-{home_wins}) Tied {away_name}-{home_name}"
 
         # 스코어 포함 여부에 따른 팀명-스코어 문자열 생성
         is_finished = "F" in status_code
